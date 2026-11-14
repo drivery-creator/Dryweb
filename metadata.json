@@ -1,0 +1,6 @@
+{
+  "name": "DRIVERY OS",
+  "description": "Pre-lanzamiento Beta de DRIVERY OS: plataforma Telco 4.0 con chat Mesh offline, mapa táctico por voz, calculadora multi-divisa BCV/USDT, lienzo inteligente y asistente Dry IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

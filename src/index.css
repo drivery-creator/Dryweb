@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Outfit", system-ui, -apple-system, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-obsidian: #03060A;
+  --color-obsidian-surface: #080E17;
+  --color-cyan-glow: #06B6D4;
+  --color-cyan-bright: #22D3EE;
+}
+
+@layer base {
+  html {
+    background-color: #03060A;
+    color: #F1F5F9;
+    font-family: var(--font-sans);
+    color-scheme: dark;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+/* Layered Obsidian & Cyan Glassmorphism */
+.glass-panel {
+  background: linear-gradient(
+    155deg,
+    rgba(14, 25, 38, 0.72) 0%,
+    rgba(6, 11, 19, 0.88) 55%,
+    rgba(4, 8, 14, 0.94) 100%
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  box-shadow:
+    inset 0 1px 0 0 rgba(165, 243, 252, 0.08),
+    0 20px 50px -20px rgba(0, 0, 0, 0.75);
+}
+
+.glass-header {
+  background: rgba(3, 6, 10, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(34, 211, 238, 0.14);
+}
+
+/* Subtle architectural perspective grid */
+.cyan-grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(34, 211, 238, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(34, 211, 238, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 85% 65% at 50% 15%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 15%, #000 35%, transparent 100%);
+}
+
+/* GPU-composited ambient breathing keyframes */
+@keyframes slow-drift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(24px, -18px, 0) scale(1.06);
+    opacity: 0.7;
+  }
+}
+
+@keyframes slow-drift-reverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(-28px, 16px, 0) scale(1.08);
+    opacity: 0.6;
+  }
+}
+
+@keyframes orb-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-drift {
+  animation: slow-drift 14s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-drift-reverse {
+  animation: slow-drift-reverse 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-orb-spin {
+  animation: orb-spin 16s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
